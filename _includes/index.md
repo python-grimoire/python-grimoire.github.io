@@ -8,6 +8,8 @@ In December 2004, Andrew and Steve released the Grimoire under the [Creative Com
 
 Nine years later, it's being (slowly) re-cast as a set of Github pages, in the spirit of the age.
 
+Until we have a working TOC, check out the [Numbers](/grimoire/numbers) entry page, or browse [the Github repo](https://github.com/python-grimoire/python-grimoire.github.io/tree/master/grimoire).
+
 [cc2]: http://creativecommons.org/licenses/by-nc-sa/2.0/
 [rc]: http://the.taoofmac.com/space/people/Rui%20Carmo
 [tao]: http://the.taoofmac.com
