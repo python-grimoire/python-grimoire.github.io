@@ -14,7 +14,7 @@ Nine years later, it's being (slowly) re-cast as a set of Github pages, in the s
 
 Right now, there's a fair amount of conversion to be done -- most of it trivial, consisting mostly of search/replace.
 
-Just grab [this](http://the.taoofmac.com/media/dev/Python/Grimoire/tiddlygrimoire.html), convert each Wiki item into Markdown and save it as `index.md` into a sensibly named folder under `grimoire` so that we have nice URLs
+Just grab [this](http://the.taoofmac.com/media/dev/Python/Grimoire/tiddlygrimoire.html), convert each Wiki item into Markdown and save it as `index.md` into a sensibly named folder under `grimoire` so that we have nice URLs.
 
 If you want to contribute new recipes, feel free to do so, but read through some of the existing ones first to get a feel for the way they're written -- I'd rather we stayed close to the spirit of the original text.
 
