@@ -1,8 +1,3 @@
----
-layout: default
-title: The Python Grimoire
----
-
 <blockquote>
 grimoire /grimwaar/ (noun) ::= a book of magic spells and invocations. Origin: French, alteration of grammaire 'grammar'. A grammar is a description of a set of symbols and how to combine them to create well-formed sentences. A grimoire is a description of a set of magical symbols and how to combine them properly. It is sort of a recipe-book for magic spells. See also Grimoire
 </blockquote>
