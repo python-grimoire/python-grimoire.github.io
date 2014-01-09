@@ -13,26 +13,34 @@ For example, the number `1` would be the bytes `0,1`; `1956` would be `164,7` be
  
 You can write code to perform the conversion by taking the low byte of `V`, shifting `V` down 8 bits and taking the low byte of the result, and so forth. However, the code is long and relatively slow: 
  
-    s = (chr( (V)        255) +
-         chr( (V >> 8)   255) +
-         chr( (V >> 16)  255) +
-         chr( (V >> 24)  255))
+```python
+s = (chr( (V)        255) +
+     chr( (V >> 8)   255) +
+     chr( (V >> 16)  255) +
+     chr( (V >> 24)  255))
+```
  
 A faster and simpler solution uses the [`struct`][s] module, which is intended for such conversions: 
  
-    import struct
-    s = struct.pack('i', V )
+```python
+import struct
+s = struct.pack('i', V )
+```
  
 To reverse the conversion, and go from a binary string to a tuple of integers, use `struct.unpack()`:
  
-    byte, short = struct.unpack('BH', '\377\000\377\377')
+```python
+byte, short = struct.unpack('BH', '\377\000\377\377')
+```
  
 ## Discussion:
  
 You're not limited to only packing a single value at time. Instead, the `pack()` function in the [`struct`][s] module takes a format string containing several characters, along with the values to be packed: 
  
-    >>> struct.pack('iii',  127, 1972, 1234567890)
-    '\177\000\000\000\264\007\000\000\322\002\226I'
+```python
+>>> struct.pack('iii',  127, 1972, 1234567890)
+'\177\000\000\000\264\007\000\000\322\002\226I'
+```
  
 Repeated format characters can be written as a single character preceded by an integer repeat count; the previous example could have been written as `struct.pack('3i', ...)`, and would produce identical results. 
  
@@ -51,8 +59,10 @@ Here's a table of some of the more commonly used format characters supported by 
 
 Because the [`struct`][s] module is often used for packing and unpacking C `structs`, it obeys the compiler's alignment rules. This means that padding bytes may be inserted between format characters of different types. For example, the zero byte in the following example is padding: 
  
-    >>> struct.pack('BH',  255, 65535)
-    '\377\000\377\377'
+```python
+>>> struct.pack('BH',  255, 65535)
+'\377\000\377\377'
+```
 
 
 [s]: http://docs.python.org/2.7/library/struct.html
