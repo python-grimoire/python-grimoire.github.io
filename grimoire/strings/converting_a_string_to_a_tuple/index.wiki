@@ -1,0 +1,55 @@
+! Problem:
+
+You want to convert a tuple in a string into the corresponding tuple object; such a {{{str2tuple()}}} function would be used like this: 
+ 
+{{{
+>>> myString = "(12, '  abc  '  ,   '  b,  c', 'd\\'e')"
+>>> print str2tuple(myString)
+(12, 1.0, "'XX'", '  abc  ', '  b,  c', "d'e", "'f")
+}}}
+
+! Solution:
+ 
+The following {{{str2tuple()}}} function will do the job. 
+ 
+{{{
+def str2tuple(s):
+   return eval(s, {'__builtins__': {}})
+}}}
+ 
+! Discussion:
+ 
+The above function uses the {{{eval()}}} built-in function, along with a special trick. {{{eval()}}} takes a string and evaluates the contents as a Python expression, returning the value of the expression. One or two additional parameters can be supplied that must be dictionaries that will be used as the table of global and local variables, respectively. 
+ 
+The {{{str2tuple()}}} function uses {{{eval()}}} and provides a dictionary containing a single key-value pair, mapping the key "{{{____builtins____}}}" to an empty dictionary. "{{{____builtins____}}}" is a special name internal to Python.
+ 
+The net effect of this is to evaluate the string in a highly restricted environment. This denies access to Python's standard built-in functions such as {{{open()}}}, and thus cannot access anything that isn't hardcoded in the language. For example: 
+ 
+{{{
+>>> str2value(' (1,"test",10.2)')
+(1, 'test', 10.2)
+>>> str2value('11+13')
+24
+>>> str2value('open("/etc/passwd")')
+Traceback (innermost last):
+ File "<stdin>", line 1, in ?
+ File "<stdin>", line 2, in str2value
+ File "<string>", line 0, in ?
+NameError: open
+>>>
+}}}
+ 
+Notice that {{{str2value()}}} can accept expressions such as "{{{11+13}}}" thanks to its use of {{{eval()}}}, returning an integer value. If you really want to make sure that the result is a tuple, you must use the {{{type()}}} built-in function to determine the type of the result and compare it with the type object for tuples. 
+ 
+{{{
+v = str2value( text )
+if type(v) is not type( () ):
+   raise ValueError, "Text %s does not contain a tuple" % (text,)
+}}}
+ 
+A clearer way to do this is to import the <<PythonModule types>> module, which contains predefined variables for the most common Python types, and compare the type of the result to {{{types.TupleType}}}.
+
+{{{
+if type(v) is types.TupleType:
+   raise ValueError, "Text %s does not contain a tuple" % (text,)
+}}}

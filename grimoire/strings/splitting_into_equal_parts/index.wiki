@@ -1,0 +1,22 @@
+! Problem:
+ 
+You wish to split a string into N equally-sized parts. The last part might be smaller than the previous ones when the length of the string isn't an exact multiple of N. For example, dividing the 9-character string {{{'Woodhenge'}}} into 2 parts would result in the list {{{['Woodh', 'enge']}}}, containing a 5-character and a 4-character string. 
+ 
+! Solution:
+ 
+The following function takes a string {{{S}}} and a number {{{N}}}, and returns an {{{N}}}-element list containing the different sections of the string. The function works by taking the length of the string and computing how long the sections must be. The list is then constructed by looping over the string and extracting each section by slicing the string. 
+ 
+{{{
+def equal_split(S, N):
+   """Split up the string S into N parts, returning a list containing
+   the parts.  The last part may be smaller than the others."""
+   part = (len(S) + N - 1)  /N
+   L = []
+   for i in range(0, N):
+       L.append( S[part*i : part*i+part] )
+   return L
+}}}
+ 
+{{{equal_split('this is a test', 3)}}} will return {{{['this ', 'is a ', 'test']}}}.
+
+More general slicing and indexing of strings works in the same way as other [[sequence types|http://www.python.org/doc/2.4.1/lib/typesseq.html]].

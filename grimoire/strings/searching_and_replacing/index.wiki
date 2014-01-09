@@ -1,0 +1,76 @@
+''Problem:'' 
+ 
+Given a string, you wish to replace all the occurrences of one substring with different text. For example, you wish to replace all occurrences of the string {{{'USER-NAME'}}} with the string {{{'Joseph Addison'}}} in the string contained in the variable {{{data}}}. 
+ 
+''Solution:'' 
+ 
+For simple string substitutions, the {{{string.replace}}} function will be the simplest and fastest solution. 
+ 
+{{{
+import string
+newdata = string.replace(data, 'USER-NAME', 'Joseph Addison')
+}}}
+ 
+If {{{data}}} contains {{{"USER-NAME has been added to the list."}}}, then after the above line is executed, {{{newdata}}} will contain {{{'Joseph Addison has been added to the list.'}}}. 
+ 
+''Discussion:'' 
+
+<<<
+''Note:'' the following has not yet been revised to account for [[Unicode]]/[[UTF-8]] details, and so should be taken with a grain of salt in modern Python - but the principles are sound.
+<<<
+
+String replacement is a common operation, and there are several ways to do it. The fastest and simplest way is the {{{string.replace()}}} function, which can only replace a fixed string with another fixed string. For example, the following line replaces the Latin-1 character 219, a capital U with a circumflex accent (^), with the HTML entity {{{&Ucirc;}}}. 
+ 
+{{{
+newdata = string.replace(data, chr(219), '&Ucirc;')
+}}}
+ 
+The {{{chr()}}} built-in function takes an integer between 0 and 255, and returns a string of length 1 that contains the character with that byte value. 
+ 
+Multiple replacements will require multiple calls to {{{string.replace()}}}: 
+ 
+{{{
+newdata = string.replace(data, chr(219), '&Ucirc;')
+newdata = string.replace(data, chr(233), '&eacute;')
+}}}
+ 
+The replacement string is fixed, so it can't be varied depending on the string that was matched. For cases that require matching variable strings, such as "match anything between square brackets", or that require varying the replacement string, you'll have to use regular expression matching, available through the built-in <<PythonModule re>> module. 
+ 
+The following example uses regular expressions to replace URLs in a string with the [[HTML]] for a link to that URL, with the URL as the link text. 
+ 
+{{{
+import re
+
+data = """http://www.freshmeat.net
+ ftp://ftp.python.org/pub/python/src/
+"""
+
+newdata = re.sub(r"""(?x)
+(  # Start of group 1
+ (http|ftp|mailto)  # URL scheme
+ :                  # Separating colon
+ \S+                # Everything up to the next whitespace character
+)  # End of group 1
+""", r'<a href="\g<1>">\g<1></a>', data)
+}}}
+ 
+Notice that the order of the arguments to {{{re.sub}}} is different from the arguments for {{{string.replace()}}}. {{{string.replace()}}} takes the arguments (string, substring, replacement), while {{{re.sub()}}} takes the arguments (pattern, replacement, string). {{{re.sub()}}} has a different ordering of its arguments for consistency with the other functions in the {{{re}}} module; the regular expression pattern is viewed as the most important argument, so it's always passed as the first argument. 
+ 
+Regular expression patterns have a complicated syntax. Let's dissect the above pattern into its components. 
+
+* {{{(?x)}}} Specifies that this pattern is expressed in verbose mode. Most whitespace will be ignored, so you can format the pattern neatly, and comments can be embedded in the pattern by preceding them with a "{{{#}}}". 
+* {{{(http|ftp|mailto)}}} The parenthesized group lists several alternative strings, separated by "{{{|}}}" characters. Any one of these strings can produce a successful match for this component of the pattern. 
+* {{{\S+}}} The {{{\S}}} special sequence matches any character that isn't a whitespace character. Whitespace characters are space "{{{ }}}", tab "{{{\t}}}",newline "{{{\n}}}", carriage return "{{{\r}}}", form feed "{{{\f}}}", and vertical tab "{{{\v}}}". The "{{{+}}}" character is a qualifier that specifies how many times the previous component should be repeated; "{{{+}}}" indicates that the {{{\S}}} should be repeated one or more times. 
+
+The replacement string can contain sequences which will contain pieces of the matching string. For example, {{{\g<1>}}} will be replaced by the contents of the first group, which in this case will contain the whole URL that matches the regular expression. The replacement string is therefore {{{'<a href="\g<1>">\g<1></a>'}}}, which will contain the text of the URL at two different places, along with the required HTML. 
+ 
+The <<PythonModule re>> module can perform simple substitutions that are equally possible with {{{string.replace()}}}. This is simply a matter of writing a pattern that doesn't use any of the regular expression syntax: 
+ 
+{{{
+data = re.sub('USER-NAME', 'Joseph Addison', data)
+}}}
+ 
+Try not to use regular expressions when a simpler fixed-string replacement can do the job, because you're paying a speed penalty for the extra generality of regular expressions. 
+
+For much more information on regular expressions in Python, consult the [[Regular Expression HOWTO|http://www.python.org/doc/howto/regex/]].
+

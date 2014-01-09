@@ -1,0 +1,11 @@
+A related problem to [[generating random numbers|Generating Random Numbers]] is generating a random permutation of numbers between 1 and N, with no repeats. For example, you might want to rearrange a list into a random order. 
+ 
+The solution is to generate a list containing the numbers from 1 to N, and use the {{{random.choice()}}} function to pick a random element. Remove the chosen element, and then repeat until the list is empty. 
+ 
+{{{
+numbers = range(1, N+1)
+while numbers:
+   j = random.choice(numbers)
+   numbers.remove(j)
+   print j
+}}}

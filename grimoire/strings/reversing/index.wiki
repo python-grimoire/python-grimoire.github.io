@@ -1,0 +1,13 @@
+! Problem:
+
+You want to reverse a string ({{{cba}}} from {{{abc}}}), and yet you cannot find a {{{strings}}} method do do it.
+
+! Solution:
+
+There is a rather hackish one-liner to reverse a string, which relies on [[extended slices|http://www.python.org/doc/2.3.5/whatsnew/section-slices.html]]:
+
+{{{
+>>> text='foobar' 
+>>> print text[::-1] 
+raboof 
+}}}

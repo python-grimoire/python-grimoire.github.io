@@ -1,0 +1,34 @@
+! Problem:
+
+You need to generate random numbers for an application, such as generating test data or selecting an item from a list. 
+
+! Solution:
+ 
+The standard library module <<PythonModule random>> implements a random number generator. Using it is simple: 
+ 
+{{{
+import random
+
+# Generate a random number between 0 and 1
+randval = random.random()
+
+# Generate a random integer between 45 and 55
+randval = random.randint(45, 55)
+
+# Choose a random value from a list
+randname = random.choice( ["Glenna", "Jody", "Natalie"] )
+}}}
+ 
+! Discussion:
+ 
+{{{random.random()}}} returns a random floating point number in the range [0, 1), generated using a Wichmann-Hill <<Wikipedia 'random number' Random_number>> generator. There are also other specialized generators in this module, built on top of the {{{random()}}} function:
+
+* {{{randint(a, b)}}} chooses an integer in the range [a, b]
+* {{{choice(S)}}} chooses a random item from the given sequence S
+* {{{uniform(a, b)}}} chooses a floating point number in the range [a, b]
+
+To specify the random number generator's initial setting, use {{{random.seed(x, y, z)}}}, which sets the seed from three integers in the range [1, 256]. There's also a {{{random}}} class, which you can instantiate to create independent multiple random number generators. 
+ 
+The <<PythonModule random>> module contains functions that approximate various standard distributions, such as a normal or Gaussian distribution, lognormal, gamma and beta distributions, and a few others. These functions are specialized enough to make me refer you to the Python Library Reference for the details. 
+ 
+Note that the {{{rand}}} module, which is occasionally used in some examples and demo programs, is now considered obsolete. Use <<PythonModule random>> instead. 

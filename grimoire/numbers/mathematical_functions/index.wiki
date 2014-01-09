@@ -1,0 +1,66 @@
+! Problem:
+
+You want to perform a calculation that requires operations beyond the basic ones of addition, subtraction, multiplication, division, and exponentiation. For example, you need to evaluate a sine or cosine. 
+
+! Solution:
+ 
+Import the <<PythonModule math>> module, and use the functions that it provides. 
+ 
+{{{
+import math
+
+angle = math.pi / 6
+x = math.cos( angle )
+y = math.sin( angle )
+}}}
+ 
+If you want to get results that are complex numbers, use the <<PythonModule cmath>> module. 
+ 
+{{{
+import cmath
+result = cmath.sin( 1+3j )
+}}}
+ 
+''Discussion:'' 
+ 
+Mathematical functions such as sine and cosine are contained in the <<PythonModule math>> module. The functions are identical to those defined by the C standard, since they're simply Python wrappers on top of those functions. The <<PythonModule math>> module also defines two constants: {{{pi}}}and {{{e}}}. 
+ 
+The functions in <<PythonModule math>> always return floating point numbers, whether the input was an integer or a float. If a result would be a complex number ({{{math.sqrt(-1)}}}, the square root of -1, is the common example), this is considered an error and triggers an exception. To get complex numbers as answers, you need to use the <<PythonModule cmath>> module, which is similar (though not identical) to the <<PythonModule math>> module, and can handle complex parameters and results: 
+ 
+{{{
+>>> math.sqrt(-1)
+Traceback (innermost last):
+ File "<stdin>", line 1, in ?
+OverflowError: math range error
+>>> cmath.sqrt(-1)
+1j
+}}}
+ 
+Here's a list of the functions contained in the <<PythonModule math>> module. The <<PythonModule cmath>> module defines analogous functions that operate on complex numbers. 
+ 
+
+|!''Name''|!''Purpose''|
+|{{{acos(x)}}}|Arc cosine of x|
+|{{{asin(x)}}}|Arc sine of x|
+|{{{atan(x)}}}|Arc tangent of x|
+|{{{atan2(x,y)}}}|Arc tangent of {{{x/y}}}|
+|{{{ceil(x)}}}|Ceiling of x; the largest integer equal to or greater than x|
+|{{{cos(x)}}}|Cosine of x|
+|{{{cosh(x)}}}|Hyperbolic cosine of x|
+|{{{exp(x)}}}|e raised to the power of x|
+|{{{fabs(x)}}}|Absolute value of x|
+|{{{floor(x)}}}|Floor of x; the largest integer equal to or less than x|
+|{{{fmod(x)}}}|x modulo y|
+|{{{frexp(x)}}}|The matissa and exponent for x.|
+|{{{hypot(x, y)}}}|Euclidean distance, {{{sqrt(x*x + y*y)}}}|
+|{{{ldexp(x, i)}}}|{{{x * (2**i)}}}|
+|{{{log(x)}}}|Natural logarithm of x|
+|{{{log10(x)}}}|Base 10 logarithm of x|
+|{{{modf(x)}}}|Return the fractional and integer parts of x|
+|{{{pow(x, y)}}}|x raised to the power of y|
+|{{{sin(x)}}}|Sine of x|
+|{{{sinh(x)}}}|Hyperbolic sine of x|
+|{{{sqrt(x)}}}|Square root of x|
+|{{{tan(x)}}}|Tangent of x|
+|{{{tanh(x)}}}|Hyperbolic tangent of x|
+

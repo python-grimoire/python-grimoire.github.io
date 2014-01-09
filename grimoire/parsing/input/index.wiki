@@ -1,0 +1,34 @@
+! Problem:
+
+You wish to parse some sort of structured input, such as a configuration file or some data file. 
+
+! Solution:
+ 
+There are many possible ways to go about this. 
+ 
+For simple input parsing, the easiest approach is usually to split the line into whitespace-delimited words using {{{string.split()}}}, and to subsequently convert decimal strings to numeric values using {{{string.atoi()}}}, {{{string.atol()}}} or {{{string.atof()}}} If you want to use a delimiter other than whitespace, {{{string.split()}}} can handle that, and can be combined with {{{string.strip()}}} which removes surrounding whitespace from a string. 
+ 
+For more complicated input parsing, the <<PythonModule re>> module's regular expressions are better suited for the task, and are more powerful than C's {{{sscanf()}}}. 
+ 
+! Discussion:
+ 
+A parser for configuration files is included as the <<PythonModule ConfigParser>> module in the standard library; you should take a look at it and see if it meets your needs. 
+ 
+Python programmers often choose to decree that software configuration files should written in <<RFC 822>> format, specifying names and their corresponding values; this allows using the parser in the <<PythonModule rfc822>> module to read the files. A sample configuration file might then look like this: 
+ 
+{{{
+Title: Index to Python Information
+Description: Python code, information, and documentation.
+Keywords: Python, Python articles, Python documentation
+Palette: gold
+Sidebar: none
+}}}
+ 
+There's a contributed module that emulates {{{sscanf()}}}, written by Steve Clift and availabe from the Contributed Software section on [[here|http://www.python.org/ftp/python/contrib-09-Dec-1999/Misc/sscanfmodule.c.Z]].
+ 
+If you're trying to parse some sort of well-known file format, it's possible that a Python module has already been written to deal with it. Some common cases are: 
+* [[The Python Imaging Library|http://www.pythonware.com/]] can read many different graphics formats, ranging from well-known ones such as [[GIF]] and [[JPEG]], to more specialized formats such as [[DCX]] and [[TIFF]]. 
+* Support for many scientific file formats has been implemented for use with Numeric Python; consult the [[Scientific Computing|http://www.python.org/topics/scicomp/]] topic guide for more information. 
+* The [[XML]] [[topic guide|http://www.python.org/topics/xml/]] tracks the available software for processing [[XML]] with Python.
+
+Before spending a lot of effort implementing a module for a new file format, do some research first and see if someone has already done it; you might save yourself a lot of work.

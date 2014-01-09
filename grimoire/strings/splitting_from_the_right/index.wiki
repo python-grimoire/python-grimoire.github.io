@@ -1,0 +1,22 @@
+! Problem:
+
+You want to split a string starting from the far (i.e. right-hand) side yet you cannot find a {{{strings}}} method do do it ({{{rsplit}}} was only introduced in 2.4).
+
+! Solution:
+
+Here's an approach that leverages the [[Reversing Strings]] one-liner:
+
+{{{
+def rsplit(s, sep=None, maxsplit=-1):
+  """
+  Equivalent to str.split, except splitting from the right.
+  """
+  if sys.version_info < (2, 4, 0):
+    if sep is not None:
+      sep = sep[::-1]
+    L = s[::-1].split(sep, maxsplit)
+    L.reverse()
+    return [s[::-1] for s in L]
+  else:
+    return s.rsplit(sep, maxsplit) 
+}}}

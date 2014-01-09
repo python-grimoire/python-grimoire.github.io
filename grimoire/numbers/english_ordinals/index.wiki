@@ -1,0 +1,7 @@
+Here's a one-liner that will add the English ordinal suffix to a number:
+
+{{{
+ord_text = lambda n: str(n) + {1: 'st', 2: 'nd', 3: 'rd'}.get(n % (10 < n % 100 < 14 or 10), 'th')
+}}}
+
+Originally from [[Paul Bissex|http://news.e-scribe.com/418]]
