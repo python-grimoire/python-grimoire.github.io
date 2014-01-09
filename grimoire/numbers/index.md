@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Numbers
+title: Introduction to numbers
 ---
 
 Python offers a variety of different numeric types: integers, which are fast but limited in size; long integers, which are slower but can be of arbitrary size; floating-point numbers; and complex numbers. 
