@@ -1,3 +1,8 @@
+---
+layout: default
+title: Converting Numbers to and from Binary Data
+---
+
 ## Problem:
 
 You need to convert an integer value `V` to a 2-byte or 4-byte string representation.
