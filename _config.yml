@@ -1,0 +1,18 @@
+name: The Python Grimoire
+url: "http://rcarmo.github.io/python-grimoire"
+description: "a book of magic spells and invocations"
+use_leaflet: 1
+blog_more_posts: 5
+prettify_theme: "ghink"
+markdown: redcarpet
+pygments: true
+paginate: 3
+paginate_path: "blog/page/:num"
+timezone: Europe/Lisbon
+redcarpet:
+  extensions:
+    - hard_wrap
+    - no_intra_emphasis
+    - autolink
+    - strikethrough
+    - fenced_code_blocks
