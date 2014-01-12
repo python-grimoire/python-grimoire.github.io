@@ -4,11 +4,19 @@ description: "a book of magic spells and invocations"
 use_leaflet: 1
 blog_more_posts: 5
 prettify_theme: "ghink"
-markdown: redcarpet
+markdown: kramdown
 pygments: true
 paginate: 3
 paginate_path: "blog/page/:num"
 timezone: Europe/Lisbon
+kramdown:
+  input: GFM
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  use_coderay: false
 redcarpet:
   extensions:
     - hard_wrap
