@@ -26,11 +26,20 @@ Strings are one of Python's sequence types. This means that strings can be slice
 H e l l o ,   w o r l d
 ```
  
-Strings are immutable; once a string has been created, whether as a literal in a program's source code or in the course of a program's operation, you can't modify the string in-place. Trying to change the first character of a string by slicing, as in the code `s[0] = 'Y'`, fails; to create a modified version of the string, you have to assemble a whole new string with code like `s = 'Y' + s[1:]`. 
+Strings are immutable; once a string has been created, whether as a literal in a program's source code or in the course of a program's operation, you can't modify the string in-place. Trying to change the first character of a string by slicing, as in the code `s[0] = 'Y'`, fails:
 
-This means that Python has to make temporary copies of the string, which will be slow and memory-consuming if you're modifying very large strings. 
+```python
+>>> s[0] = 'Y'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'str' object does not support item assignment
+```
 
-See the [Mutable Strings][mutable] section for a way around this by using the [`array`][array] module, and the [`UserString`][userstring] <PythonModule module for a `MutableString` type (deprecated from 2.6 onwards) which may be useful if you absolutely must modify strings in-place and still use some of [`string`][string]  methods.
+To create a modified version of the string, you have to assemble a whole new string with code like `s = 'Y' + s[1:]`. This means that Python has to make temporary copies of the string, which will be slow and memory-consuming if you're modifying very large strings. 
+
+See the [Mutable Strings][mutable] section for a way around this using the [`array`][array] module, and the [`UserString`][userstring] module[^1] for a `MutableString` type which may be useful if you absolutely must modify strings in-place and still use some of [`string`][string]  methods.
+
+[^1]: Note that `UserString` has been deprecated from 2.6 onwards, but since 2.5 is still in common use in older systems this may still be a valid technique.
 
 [html]: search#html
 [xml]: search#xml
