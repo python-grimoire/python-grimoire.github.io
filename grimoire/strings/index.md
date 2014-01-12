@@ -37,9 +37,9 @@ TypeError: 'str' object does not support item assignment
 
 To create a modified version of the string, you have to assemble a whole new string with code like `s = 'Y' + s[1:]`. This means that Python has to make temporary copies of the string, which will be slow and memory-consuming if you're modifying very large strings. 
 
-See the [Mutable Strings][mutable] section for a way around this using the [`array`][array] module, and the [`UserString`][userstring] module[^1] for a `MutableString` type which may be useful if you absolutely must modify strings in-place and still use some of [`string`][string]  methods.
+See the [Mutable Strings][mutable] section for a way around this using the [`array`][array] module, and the [`UserString`][userstring] module for a `MutableString` type which may be useful if you absolutely must modify strings in-place and still use some of [`string`][string]  methods.
 
-[^1]: Note that `UserString` has been deprecated from 2.6 onwards, but since 2.5 is still in common use in older systems this may still be a valid technique.
+>> <i class="fa-info-circle"></i> Note that `UserString` has been deprecated from 2.6 onwards, but since 2.5 is still in common use in older systems this may still be a valid technique.
 
 [html]: search#html
 [xml]: search#xml

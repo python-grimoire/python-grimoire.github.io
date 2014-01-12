@@ -4,7 +4,7 @@ description: "a book of magic spells and invocations"
 use_leaflet: 1
 blog_more_posts: 5
 prettify_theme: "ghink"
-markdown: kramdown
+markdown: redcarpet
 pygments: true
 paginate: 3
 paginate_path: "blog/page/:num"
@@ -25,5 +25,4 @@ redcarpet:
     - strikethrough
     - fenced_code_blocks
     - tables
-    - footnotes
     - with_toc_data
