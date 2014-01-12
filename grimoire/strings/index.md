@@ -44,6 +44,6 @@ See the [Mutable Strings][mutable] section for a way around this using the [`arr
 [html]: search#html
 [xml]: search#xml
 [array]: http://docs.python.org/2.7/library/array.html
-[mutable] #todo
+[mutable]: todo
 [userstring]: http://docs.python.org/release/2.4/lib/module-UserString.html
 [string]: http://docs.python.org/2.7/library/string.html
